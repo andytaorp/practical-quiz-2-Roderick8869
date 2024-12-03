@@ -4,8 +4,22 @@ export default function AddMovieForm({ onAddMovie }) {
   const [title, setTitle] = useState("");
 
   const handleSubmit = (e) => {
-    // TODO: write code to handle form submission
+    e.preventDefault();  // Fixed typo here
+    if (title.trim()) {
+      onAddMovie(title);
+      setTitle("");
+    }
   };
 
-  return; // TODO: add a form to add a new movie
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Enter movie title"
+      />
+      <button type="submit">Add Movie</button>
+    </form>
+  );
 }
